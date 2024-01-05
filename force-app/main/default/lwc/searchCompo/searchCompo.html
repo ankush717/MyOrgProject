@@ -1,0 +1,37 @@
+<template>
+    <template if:true={closeTab}>
+        <lightning-card >
+            <div class="slds-m-around_medium">
+                <lightning-input
+                    type="text"
+                    label="Do you have any queries"
+                    placeholder="Enter text to search..."
+                    onchange={handleSearchChange}
+                ></lightning-input>
+                <template if:true={assets}>
+                    <template for:each={assets} for:item="asset">
+                        <div key={asset.Id} class="slds-p-around_small">
+                          
+                            <a href="javascript:void(0);" onclick={openModal}>{asset.Questions__c}</a>
+        
+                        </div>
+                    </template>
+                    <div>
+                        <lightning-button class="slds-var-p-around_x-small" label="Close" onclick={handleClick}></lightning-button>
+                    </div>
+                </template>
+                <template if:true={error}>
+                    <div class="slds-text-color_error">{error}</div>
+                </template>
+                <div class={modalClass}>
+                    <div class="modal-content">
+                        <span class="close" onclick={closeModal}>&times;</span>
+                        <c-f-a-qs get-value-from-parent ={searchText}></c-f-a-qs>
+                    </div>
+                   
+                </div>
+               
+            </div>
+        </lightning-card>
+    </template>
+</template>

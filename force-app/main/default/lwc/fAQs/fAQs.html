@@ -1,0 +1,16 @@
+<template >
+    <h2><b>FAQs</b></h2>
+    <div class="faq-list" >
+        <template for:each={questions} for:item="question">
+            <div key={question.id} class="faq-item">
+                <div class="question" onclick={toggleAnswer} data-question-id={question.id}>
+                    {question.text}
+                </div>
+                <div if:true={question.showAnswer} class="answer-content show">
+                    {question.answer}
+                </div>
+            </div>
+        </template>
+    </div>
+    <!-- Your popup template here -->
+</template>
